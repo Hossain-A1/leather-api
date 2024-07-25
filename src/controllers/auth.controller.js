@@ -21,6 +21,20 @@ const registerUser = async (req, res) => {
   }
 };
 
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await userModel.login(email, password);
+
+    const token = createToken(user._id);
+    res.status(200).json({ user, token });
+  } catch (error) {
+    await handleError(error, res);
+  }
+};
+
 module.exports = {
   registerUser,
+  loginUser,
 };

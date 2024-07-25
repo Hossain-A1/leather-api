@@ -9,6 +9,8 @@ const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
 const registerRouter = require("./routes/auth.route");
 
+const loginRouter = require("./routes/auth.route");
+
 const app = express();
 const port = process.env.PORT || 4000;
 const uri = process.env.MONGO_URI;
@@ -28,6 +30,7 @@ app.get("/", (req, res) => {
 // bypass all routes
 
 app.use("/api/auth", registerRouter);
+app.use("/api/auth", loginRouter);
 
 mongoose
   .connect(uri)
