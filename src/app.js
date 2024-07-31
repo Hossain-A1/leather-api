@@ -8,6 +8,7 @@ const helmet = require("helmet");
 const mongoose = require("mongoose");
 const mongoSanitize = require("express-mongo-sanitize");
 const registerRouter = require("./routes/auth.route");
+const productRouter = require("./routes/product.route")
 
 const loginRouter = require("./routes/auth.route");
 
@@ -31,6 +32,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", registerRouter);
 app.use("/api/auth", loginRouter);
+app.use("/api", productRouter);
 
 mongoose
   .connect(uri)
