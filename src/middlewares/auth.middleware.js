@@ -1,6 +1,5 @@
 const userModel = require("../models/user.model");
-const {verifyToken}= require("../manager/jwt-token.manager")
-
+const { verifyToken } = require("../manager/jwt-token.manager");
 
 const isAuthorized = async (req, res, next) => {
   const token = req.headers.authorization?.split(" ")[1];
@@ -11,7 +10,7 @@ const isAuthorized = async (req, res, next) => {
   }
 
   try {
-    const payload = verifyToken(token)
+    const payload = verifyToken(token);
 
     const user = await userModel.findById(payload.id);
 
